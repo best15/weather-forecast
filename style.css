@@ -1,0 +1,21 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+
+#header h1{
+    text-align: center;
+}
+
+.forecast{
+    border: black solid 1px;
+    height: 200px;
+
+}
+.search{
+    border: black solid 1px;
+    height: 500px;
+}
