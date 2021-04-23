@@ -6,47 +6,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
-
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"
+    ></script>
     <title>Weather Dashboard</title>
 </head>
 <body>
-    <header  id="header">
-        <h1>Weather Dashboard</h1>
-    </header>
+  <!-- As a heading -->
+<nav class="navbar navbar-dark bg-primary ">
+    <div class="container-fluid">
+      <h1 class="mb-3">Weather Dashboard</h1>
+    </div>
+  </nav>
 
     <section class="container-fluid">
         <div class="row">
-            <div class="col-sm-4 col-md-4 col-lg-4 search">
-
+            <div class="col-sm-3 col-md-3 col-lg-3 search">
+                <h2>Search for a City:</h2>
             </div>
-            <div class="col-sm-8 col-md-8 col-lg-8 weatherforecast">
-                <div class="row forecast">
-                    <h3>City Name(Date)</h3>
-                  
+            <div class="col-sm-9 col-md-9 col-lg-9 weatherforecast">
+                <div class="row forecast d-flex flex-column">
+                    <h2 id="cityname" class="ml-2 "></h2>
+                    <h4 id="temp" class="ml-2"></h4>
+                    <h4 id="wind" class="ml-2"></h4>
+                    <h4 id="humidity" class="ml-2"></h4>
+                    <h4 id="uv"class="ml-2" > </h4>
+                    
                 </div>
-                <div class="row  5dayforecast">
+                <div class="row  ">
                     <h3>5-Day Forecast:</h3>
                 </div>
 
-                <div class="row">
-                    <div class="card col-sm-12 col-md-6 col-lg-2 bg-secondary">
-                        <p id="" class="card-text">
-
-                        </p>
-                    </div>
-                    <div class="card col-sm-12 col-md-6 col-lg-2 bg-secondary">
-                        
-                    </div>
-                    <div class="card col-sm-12 col-md-6 col-lg-2 bg-secondary">
-                        
-                    </div>
-                    <div class="card col-sm-12 col-md-6 col-lg-2 bg-secondary">
-                        
-                    </div>
-                    <div class="card col-sm-12 col-md-6 col-lg-2 bg-secondary">
-                        
-                    </div>
-
+                <div id="fiveday_forecast" class="row">
+ 
 
                 </div>
 
