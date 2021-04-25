@@ -9,7 +9,7 @@
     height: 200px;
 
 }
-.search{
-    border: black solid 1px;
-    height: 500px;
+
+.card{
+    background-color: rgb(65, 75, 95);
 }
