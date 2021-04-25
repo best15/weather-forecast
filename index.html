@@ -6,10 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+
     <script
-      type="text/javascript"
-      src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"
+    type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"
     ></script>
+ 
     <title>Weather Dashboard</title>
 </head>
 <body>
@@ -24,6 +26,18 @@
         <div class="row">
             <div class="col-sm-3 col-md-3 col-lg-3 search">
                 <h2>Search for a City:</h2>
+
+                <div class="input-group mb-3 border border-dark ">
+                  <input id="searchcity" type="text" class="form-control" placeholder="Search City" aria-label="search" >
+                </div>
+
+                <button id="searchBtn" class="btn btn-primary  col-12"  type="button">Search</button>
+                 
+                <hr class=" border border-dark border-5 ">
+
+                <div id="recentsearch">
+                  
+                </div>
             </div>
             <div class="col-sm-9 col-md-9 col-lg-9 weatherforecast">
                 <div class="row forecast d-flex flex-column">
@@ -50,7 +64,14 @@
 
 
     </section>
+ 
 
-    <script src="./script.js"></script>
+    <!-- <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAjxAYxevN9171KVhwrSlTpOsYIqq5aSQ0&libraries=places">
+    </script> -->
+
+    <script  src="./script.js"></script>
+
+
 </body>
 </html>
