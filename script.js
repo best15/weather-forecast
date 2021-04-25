@@ -7,7 +7,7 @@ var fiveday_forecast = document.querySelector("#fiveday_forecast");
 var search_city = document.querySelector("#searchcity");
 var searchBtn = document.querySelector("#searchBtn");
 var recentdiv = document.querySelector("#recentsearch");
-
+var recentbtn = document.querySelector('.btn');
 var searchedlocation = new Array();
 
 let place = "Perth";
@@ -27,7 +27,7 @@ if (JSON.parse(localStorage.getItem("recentsearch")) != null)
   for (let i = searchedlocation.length; i > 0 ; i--)
   {
   var recent = document.createElement("button");
-    recent.setAttribute("class", "btn btn-secondary  col-12 mb-3")
+    recent.setAttribute("class", "recentbtn btn btn-secondary  col-12 mb-3")
     recentdiv.append(recent);
     recent.innerHTML = searchedlocation[i-1];
   }
@@ -37,34 +37,47 @@ searchBtn.addEventListener("click" , weatherforecast);
 
 function weatherforecast(event) {
 
-  var address = search_city.value;
+  var place = search_city.value;
+  let longlatUrl = `https://api.openweathermap.org/data/2.5/weather?q=${place}&appid=${appid}`;
 
-  getweather(address);
+  fetch(longlatUrl)
+  .then(function (response) {
+   
+    if(response.status == 200){
 
-  var check = searchedlocation.includes(address) ;
+      var check = searchedlocation.includes(place) ;
 
-  if (address!= null && !check){
+      if (!check){
 
-    if(searchedlocation.length == 8){
-      searchedlocation =  searchedlocation.slice(1);
- 
-    }
-    searchedlocation.push(address);
-    localStorage.setItem("recentsearch", JSON.stringify(searchedlocation));
-  }
-
-  searchedlocation = JSON.parse(localStorage.getItem("recentsearch"));
-  recentdiv.innerHTML = '';
-  
-  for (let i = searchedlocation.length; i > 0 ; i--)
-  { 
-  
-    var  recent = document.createElement("button");
-    recent.setAttribute("class", "btn btn-secondary  col-12 mb-3")
-    recent.innerHTML = searchedlocation[i-1];
-    recentdiv.append(recent);
+        if(searchedlocation.length == 8){
+          searchedlocation =  searchedlocation.slice(1);
     
-  }
+        }
+        searchedlocation.push(place);
+        localStorage.setItem("recentsearch", JSON.stringify(searchedlocation));
+      }
+
+    
+    getweather(place);
+    
+    searchedlocation = JSON.parse(localStorage.getItem("recentsearch"));
+    recentdiv.innerHTML = '';
+    
+    for (let i = searchedlocation.length; i > 0 ; i--)
+    { 
+    
+      var  recent = document.createElement("button");
+      recent.setAttribute("class", "btn btn-secondary  col-12 mb-3")
+      recent.innerHTML = searchedlocation[i-1];
+      recentdiv.append(recent);
+      
+    }
+
+    }
+
+  })
+  
+
 
 }
 
@@ -72,26 +85,27 @@ function weatherforecast(event) {
 
 function getweather(place) {
   
-  fiveday_forecast.innerHTML = '';
- 
-
   let longlatUrl = `https://api.openweathermap.org/data/2.5/weather?q=${place}&appid=${appid}`;
+
 
   fetch(longlatUrl)
   .then(function (response) {
    
     if(response.status != 200){
-     alert("Incorrect City Name");
+     search_city.value = 'Incorrect Name';
+     
      return "Incorrect";
     }
     else{
+      
     return response.json();
   }
   })
   .then(function (data) {
 
   if(data!="Incorrect")
-  {     
+  {
+ 
   let  latitude =  data.coord.lat;
   let  longitude = data.coord.lon;
   let  url = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude=minutely&units=imperial&appid=${appid}`;
@@ -108,7 +122,8 @@ function getweather(place) {
      humidity.innerHTML = "Humidity: " + data.current.humidity + "%";
      uv_index.innerHTML = "UV Index: " + data.current.uvi;
      
-    
+     fiveday_forecast.innerHTML = '';
+ 
      for (let i=0; i<data.daily.length-3; i++)
      {
      
@@ -143,10 +158,18 @@ function getweather(place) {
    });  
 
   }
+  
   });
-
+  
 
 
 }
   
 
+recentdiv.addEventListener("click", recentsearch);
+
+function recentsearch(event) {
+
+getweather(event.target.innerHTML);
+  
+}
