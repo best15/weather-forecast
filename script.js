@@ -1,4 +1,5 @@
 var cityname = document.querySelector("#cityname");
+var icon = document.querySelector("#icon");
 var temp = document.querySelector("#temp");
 var windspeed = document.querySelector("#wind");
 var humidity = document.querySelector("#humidity");
@@ -115,7 +116,11 @@ function getweather(place) {
      return response.json();
    })
    .then(function (data) {
- 
+    console.log(data);
+    var iconcode = data.current.weather[0].icon;
+    var iconurl = `http://openweathermap.org/img/wn/${iconcode}.png`;
+    icon.setAttribute("src", iconurl);
+
      cityname.innerHTML = data.timezone + ' (' + date + ') ';
      temp.innerHTML = "Temp: " + data.current.temp + "°F";
      windspeed.innerHTML = "Wind: " + data.current.wind_speed + " MPH";
@@ -128,7 +133,7 @@ function getweather(place) {
      {
      
      var days = document.createElement("div");
-     days.setAttribute("class", "card col-sm-10 col-md-5 col-lg-2  mr-3 mb-2 ");
+     days.setAttribute("class", "card col-sm-10 col-md-5 col-lg-2  mr-4 mb-2 ");
      fiveday_forecast.append(days);  
  
      
@@ -136,7 +141,12 @@ function getweather(place) {
      next_day.setAttribute("class", "text-white mb-3 mt-2");
      next_day.innerHTML = moment(date).add(i+1, 'd').format("M/D/Y")
     
- 
+     var weathericon = document.createElement("img");
+     var weatherid = data.daily[i].weather[0].icon;  
+     var weatherUrl =  `http://openweathermap.org/img/wn/${weatherid}.png`; 
+     weathericon.setAttribute("class","w-50" );
+     weathericon.setAttribute("src",weatherUrl );
+
      var temperature = document.createElement("h5");
      temperature.setAttribute("class", "text-white mb-3");
      temperature.innerHTML = "Temp: " + data.daily[i].temp.day + "°F";
@@ -150,7 +160,7 @@ function getweather(place) {
      humid.innerHTML = "Humidity: " + data.daily[i].humidity + "%";
  
  
-     days.append(next_day,temperature,wind,humid);
+     days.append(next_day,weathericon,temperature,wind,humid);
  
      }
  

@@ -18,8 +18,8 @@
 <body>
   <!-- As a heading -->
 <nav class="navbar navbar-dark bg-primary ">
-    <div class="container-fluid">
-      <h1 class="mb-3">Weather Dashboard</h1>
+    <div class="container-fluid  justify-content-center">
+      <h1 class="mb-3 text-center text-light">Weather Dashboard</h1>
     </div>
   </nav>
 
@@ -42,11 +42,15 @@
             </div>
             <div class="col-sm-9 col-md-9 col-lg-9 weatherforecast">
                 <div class="row forecast d-flex flex-column mt-3 ">
-                    <h2 id="cityname" class="ml-2 fw-bolder"></h2>
+                  <div class="d-flex">
+                    <h2 id="cityname" class="ml-2 fw-bolder"> </h2> 
+                    <img id="icon" src="" alt="weathericon" class="w-40"> 
+                  </div>  
                     <h5 id="temp" class="ml-2"></h5>
                     <h5 id="wind" class="ml-2"></h5>
                     <h5 id="humidity" class="ml-2"></h5>
                     <h5 id="uv"class="ml-2" > </h5>
+                   
                     
                 </div>
                 <div class="row mt-4  ">
