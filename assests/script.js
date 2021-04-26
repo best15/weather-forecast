@@ -75,6 +75,10 @@ function weatherforecast(event) {
     }
 
     }
+    else{
+      search_city.value = 'Incorrect Name';
+     
+    }
 
   })
   
@@ -125,18 +129,18 @@ function getweather(place) {
      temp.innerHTML = "Temp: " + data.current.temp + "°F";
      windspeed.innerHTML = "Wind: " + data.current.wind_speed + " MPH";
      humidity.innerHTML = "Humidity: " + data.current.humidity + "%";
-     uv_index.innerHTML = "  " + data.current.uvi;
+     uv_index.innerHTML =  data.current.uvi;
 
      if (data.current.uvi < 3)
      {
-      uv_index.classList.add("bg-success") ; 
+      uv_index.setAttribute("class","ml-2 rounded-pill bg-success") ; 
      }
      else if (data.current.uvi < 6)
      {
-      uv_index.classList.add("bg-warning") ; 
+      uv_index.setAttribute("class","ml-2 rounded-pill bg-warning") ; 
      }
      else{
-      uv_index.classList.add("bg-danger") ; 
+      uv_index.setAttribute("class","ml-2 rounded-pill bg-danger") ; 
      }
      
      
