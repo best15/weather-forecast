@@ -125,7 +125,20 @@ function getweather(place) {
      temp.innerHTML = "Temp: " + data.current.temp + "°F";
      windspeed.innerHTML = "Wind: " + data.current.wind_speed + " MPH";
      humidity.innerHTML = "Humidity: " + data.current.humidity + "%";
-     uv_index.innerHTML = "UV Index: " + data.current.uvi;
+     uv_index.innerHTML = "  " + data.current.uvi;
+
+     if (data.current.uvi < 3)
+     {
+      uv_index.classList.add("bg-success") ; 
+     }
+     else if (data.current.uvi < 6)
+     {
+      uv_index.classList.add("bg-warning") ; 
+     }
+     else{
+      uv_index.classList.add("bg-danger") ; 
+     }
+     
      
      fiveday_forecast.innerHTML = '';
  
