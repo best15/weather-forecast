@@ -34,6 +34,7 @@ if (JSON.parse(localStorage.getItem("recentsearch")) != null)
   }
 }
 
+//eventlistner on click search button
 searchBtn.addEventListener("click" , weatherforecast);
 
 function weatherforecast(event) {
@@ -44,6 +45,7 @@ function weatherforecast(event) {
   fetch(longlatUrl)
   .then(function (response) {
    
+    //check response status before saving recent search to localstorage
     if(response.status == 200){
 
       var check = searchedlocation.includes(place) ;
@@ -64,6 +66,7 @@ function weatherforecast(event) {
     searchedlocation = JSON.parse(localStorage.getItem("recentsearch"));
     recentdiv.innerHTML = '';
     
+    //create button for each recent searched location
     for (let i = searchedlocation.length; i > 0 ; i--)
     { 
     
@@ -110,7 +113,7 @@ function getweather(place) {
 
   if(data!="Incorrect")
   {
- 
+ //get latitude and longitude from first fetch then use it to fetch actual weather details from openweather-onecall
   let  latitude =  data.coord.lat;
   let  longitude = data.coord.lon;
   let  url = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude=minutely&units=imperial&appid=${appid}`;
@@ -120,7 +123,7 @@ function getweather(place) {
      return response.json();
    })
    .then(function (data) {
-    console.log(data);
+    
     var iconcode = data.current.weather[0].icon;
     var iconurl = `http://openweathermap.org/img/wn/${iconcode}.png`;
     icon.setAttribute("src", iconurl);
@@ -131,6 +134,7 @@ function getweather(place) {
      humidity.innerHTML = "Humidity: " + data.current.humidity + "%";
      uv_index.innerHTML =  data.current.uvi;
 
+     //set background color indicating UV conditions
      if (data.current.uvi < 3)
      {
       uv_index.setAttribute("class","ml-2 rounded-pill bg-success") ; 
@@ -192,7 +196,7 @@ function getweather(place) {
 
 }
   
-
+//display weather on click of recent search buttons
 recentdiv.addEventListener("click", recentsearch);
 
 function recentsearch(event) {

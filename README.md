@@ -6,4 +6,4 @@ Weather Forecast app where you search for city and it displays all the weather c
 
 Deploy Link:  https://best15.github.io/weather-forecast/
 
- ![CodeQuiz-start-image](./images/weather-forecast.jpg)
+ ![Weather-Dashboard-image](./images/weather-forecast.jpg)
